@@ -1,5 +1,5 @@
-### Powershell_Magic
+## Powershell_Magic
 
-## Description :- Helps retrival of uninstall strings of installed products
+### Description :- Helps retrival of uninstall strings of installed products
 
-## Usage :  .\Get-Uninstall-Codes.ps1 -productName  malwarebytes
+### Usage :  .\Get-Uninstall-Codes.ps1 -productName  malwarebytes

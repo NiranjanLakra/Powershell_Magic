@@ -34,4 +34,4 @@ try{
     Write-Host “[-] UN-Mounted HKCR”
     Write-Host " "
     }
-catch{"Usage : .\Get-Uninstall-Codes.ps1 -productName sophos""}
+catch{"Usage : .\Get-Uninstall-Codes.ps1 -productName malwarebytes"}

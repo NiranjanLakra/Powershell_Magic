@@ -1,13 +1,15 @@
-﻿param($productName)
+﻿[CmdletBinding()]param(
+    [Parameter(Mandatory = $True, HelpMessage = "Please enter a Product Name to search for its Uninstall String")]$productName)
 try{
-    Write-Host “------------------------Getting UninstallString, Products Codes------------------------”
     Write-Host " "
-    Write-Host “HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\”
+    Write-Host -ForegroundColor Gray “------------------------Getting UninstallString, Products Codes------------------------”
+    Write-Host " "
+    Write-Host -ForegroundColor Green “HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\”
     Get-childitem -Path Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall | Get-ItemProperty | Select-Object -Property DisplayName, UninstallString | Select-String $productName
     Write-Host " "
     Write-Host “--------------------------------------------------------------------------”
     Write-Host " "
-    Write-Host “HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\”
+    Write-Host -ForegroundColor Green “HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\”
     Write-Host " "
     Get-childitem -Path Registry::HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\  | Get-ItemProperty | Select-Object -Property DisplayName, UninstallString | Select-String $productName
     Write-Host " "
@@ -28,6 +30,9 @@ try{
             Write-Host " "
             Write-Host “--------------------------------------------------------------------------”
         }
+    Write-Host " "
+    Write-Host -ForegroundColor Green "HKEY_CLASSES_ROOT\Installer\Products\"
+    Write-Host " "
     Get-childitem -Path Registry::HKEY_CLASSES_ROOT\Installer\Products\ | Get-ItemProperty | Select-Object -Property ProductName, PackageCode, ProductIcon | Select-String $productName
     Remove-PSDrive -Name HKCR
     Write-Host " "
